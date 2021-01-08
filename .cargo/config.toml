@@ -1,0 +1,9 @@
+# https://github.com/rust-lang/cargo/issues/2930
+
+[build]
+target = "wasm32-unknown-unknown"
+
+[profile.release]
+lto = true
+panic = "abort"
+opt-level = 3

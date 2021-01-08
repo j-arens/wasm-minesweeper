@@ -1,0 +1,135 @@
+/*****************************************************************************/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/*****************************************************************************/
+
+:root {
+	--color-grey-0: #0d1117;
+	--color-grey-1: #c9d1d9;
+	--color-grey-2: #8b949e;
+
+	--color-red-0: #f9826c;
+
+	--color-yellow-0: #e3b341;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-grey-0);
+	font-size: 12px;
+  font-family: monospace;
+}
+
+.sector {
+	line-height: 1em;
+	color: var(--color-grey-0);
+	border: 2px solid var(--color-grey-1);
+	background-color: var(--color-grey-1);
+	width: 2em;
+	height: 2em;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.sector[data-state]::before {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sector[data-state="revealed"],
+.sector[data-state="questioned"],
+.sector[data-state="flagged"] {
+	background-color: var(--color-grey-2);
+	border-color: var(--color-grey-2);
+}
+
+.sector[data-state="exploded"] {
+	background-color: var(--color-red-0);
+	border-color: var(--color-red-0);
+}
+
+.sector[data-state="revealed"]:not([data-proximity="0"])::before {
+	content: attr(data-proximity);
+}
+
+.sector[data-state="questioned"] {
+	border-color: var(--color-yellow-0);
+}
+
+.sector[data-state="questioned"]::before {
+  content: "?";
+}
+
+.sector[data-state="flagged"] {
+	border-color: var(--color-red-0);
+}
+
+.sector[data-state="flagged"]::before {
+	content: "\20E0";
+	font-weight: bold;
+}
+
+.sector[data-catalyst="true"]::before {
+	content: "x";
+}
